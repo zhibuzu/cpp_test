@@ -9,14 +9,19 @@
  ****************************************************************/
 
 /**
- * @file    parse.h
- * @brief   
+ * @file    parse.cpp
+ * @brief   类边界：只提供解析功能但不存储解析状态
+ *          初始化词表文件，
+ *          提供词表格式设置接口，
+ *          提供用户自定义类型解析器注册，
+ *          提供line by line解析
+ *          
  * @author  Hulifa (hulifa@baidu.com)
  * @version 1.0.0
  * @date    2018/05/18
  */
 
-#ifndef GOOD_CODER_PARSE_H
-#define GOOD_CODER_PARSE_H
+#include <dict_parser.h>
+#include <stdarg.h>
+#include "buildin_parser.h"
 
-#endif

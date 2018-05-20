@@ -37,7 +37,11 @@ type_parser_t type_parser_arr[] = {
     {"square", square}
 };
 
-std::map<string, func> type_parser_map;
+std::map<string, func> type_parser_map = {
+    {"increase", increase},
+    {"decrease", decrease},
+    {"square", square}
+};
 
 int split_str(string str, const char* delimiters, vector<string> &vec) {
     int split_s = 0;
@@ -62,7 +66,7 @@ int split_str(string str, const char* delimiters, vector<string> &vec) {
 int cal_line_data(vector<string> v_line, vector<string> v_format, ...) {
     size_t num = v_format.size();
 
-    // 可变长参数
+    // 可变长参�?
     va_list vl;
     va_start(vl, v_format);
 
@@ -74,7 +78,7 @@ int cal_line_data(vector<string> v_line, vector<string> v_format, ...) {
         func fn = type_parser_map[s_format];
         int res = (*fn)(s_line, arg_res);
         // cout << res << endl;
-        (arg_res) = res;
+        arg_res = &res;
     }
 
     return 0;
@@ -101,12 +105,12 @@ int main() {
     //     ++p;
     // }
 
-    type_parser_map.insert(std::make_pair("increase", increase));
-    type_parser_map.insert(std::make_pair("decrease", decrease));
-    type_parser_map.insert(std::make_pair("square", square));
+    // type_parser_map.insert(std::make_pair("increase", increase));
+    // type_parser_map.insert(std::make_pair("decrease", decrease));
+    // type_parser_map.insert(std::make_pair("square", square));
     // // 下标操作
     // std::cout << (*type_parser_map["increase"])(arg) << std::endl;
-    // // 迭代器
+    // // 迭代�?
     // std::map<const char*, func>::iterator map_it = type_parser_map.begin();
     // while (map_it != type_parser_map.end()) {
     //     std::cout << "Cal: " << map_it->first << std::endl;
@@ -153,7 +157,7 @@ int main() {
         cout << (*fn)(arg, p_res) << endl;
     }
 
-    // 可变长参数
+    // 可变长参�?
     int i_res, d_res, s_res;
     int ret = cal_line_data(v_line1, v_format, &i_res, &d_res, &s_res);
     cout << "i_res: " << i_res << endl;

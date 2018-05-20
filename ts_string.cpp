@@ -34,13 +34,18 @@ int main(int argc, char* argv[])
     // string str1(10, 'a');
     // cout << str1 << endl;
 
-    const string str = "hello world!";
-    for (const char &s : str) {
-        // s = toupper(s);
-        cout << s;
-    }
+    // const string str = "hello world!";
+    // for (const char &s : str) {
+    //     // s = toupper(s);
+    //     cout << s;
+    // }
 
-    cout << endl << *str.begin() << endl;
+    // cout << endl << *str.begin() << endl;
+
+    const char* dict_file_name = "";
+    char c1 = dict_file_name[0];
+    cout << c1 << endl;
+    cout << (c1 == '0') << endl;
 
     return 0;
 }

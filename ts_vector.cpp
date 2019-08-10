@@ -26,13 +26,23 @@ int main() {
         cout << n << endl;
     }
 
-    int num;
-    vector<int> numvec;
-    while (cin >> num) {
-        numvec.push_back(num);
+    // change nvec value by iterator
+    vector<int>::iterator it = nvec.begin();
+    for (; it != nvec.end(); ++it) {
+        *it = 2 * (*it);
     }
-
-    for (auto n : numvec) {
+    cout << "======================" << endl;
+    for (auto n : nvec) {
         cout << n << endl;
     }
+
+    // int num;
+    // vector<int> numvec;
+    // while (cin >> num) {
+    //     numvec.push_back(num);
+    // }
+
+    // for (auto n : numvec) {
+    //     cout << n << endl;
+    // }
 }

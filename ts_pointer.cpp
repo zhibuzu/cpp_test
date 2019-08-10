@@ -47,5 +47,7 @@ int main()
 	// you now have a (Vertrag *) pointing to a (No2 *),
 	// even though neither is a subclass of the other!!
 	// (basically, you are making the variable vptr point to no2ptr)
+
+
 	return 0;
 }

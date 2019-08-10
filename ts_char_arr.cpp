@@ -11,6 +11,11 @@ int main(int argc, char *argv[]) {
     char chrs2[] = {0, 1, 2};
     fprintf(stdout, "the size of init chrs2 is %lu\n", sizeof(chrs2)); // 3
     // 在初始化的时候就确定了数组的长度, sizeof返回分配char数组的元素个数
+
+    char chrs3[100] = {65,};
+    fprintf(stdout, "the value of chrs3[0] is %c\n", chrs3[0]); // A
+    fprintf(stdout, "the value of chrs3[1] is %c\n", chrs3[1]);
+    // char数组若未指明初始化值，则默认为'\0'
     
     fprintf(stdout, "the len of chrs is %lu\n", strlen(chrs)); // 0
     fprintf(stdout, "the len of chrs2 is %lu\n", strlen(chrs2)); // 0

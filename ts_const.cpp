@@ -11,6 +11,10 @@ using namespace std;
 //     return *m;
 // }
 
+const char * func() {
+    return "hello world!";
+}
+
 int main() {
     const int n = 1;
     // int *m = &n;
@@ -22,4 +26,6 @@ int main() {
 
     const char *ss = Conn("hello", "world");
     cout << ss << endl;
+
+    cout << func() << endl;
 }

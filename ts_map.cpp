@@ -84,7 +84,7 @@ const char* ParseTypeName[] = {
 
 ParseType type_name_to_enum(const char* name);
 
-map<string, ParseCommon* > parse_class_map;
+map<string, ParseInt* > parse_class_map;
 vector<ParseCommon*> parse_class_vec; 
 
 
@@ -103,20 +103,22 @@ int main() {
     
     
     
-    ParseCommon *pi = new ParseInt();
+    ParseInt *pi = new ParseInt();
     parse_class_map.insert({"int", pi});
     parse_class_vec.push_back(pi);
-    int res;
+
     // int ret = dynamic_cast<ParseInt*>(parse_class_map["int"])->parse("1010000", res);
     // int ret = parse_class_map["int"]->parse("1010000", res);
     // int ret = (parse_class_vec[0])->parse("1010000", res);
-    int ret = (*pi).parse("1010000", res);
-    cout << "res: " << res << endl;
-    cout << "type of res: " << typeid(res).name() << endl;
-    cout << "type of res: " << typeid(pi).name() << endl;
-    
-
-    // ParseInt pii = new (types_map["int"]);
-    // int num = pii.parse("10100001");
-    // cout << num << endl;
+    // int ret = (*pi).parse("1010000", res);
+    // cout << "res: " << res << endl;
+    // cout << "type of res: " << typeid(res).name() << endl;
+    // cout << "type of res: " << typeid(pi).name() << endl;
+    std::string key = "ss";
+    if (parse_class_map.find(key) != parse_class_map.end()) {
+        ParseInt *pii = parse_class_map[key];
+        int res;
+        int num = pii->parse("10100001", res);
+        cout << res << endl;
+    }
 }

@@ -1,0 +1,33 @@
+#edit-mode: -*- python -*-
+#encoding: utf-8
+
+# 编译根目录
+WORKROOT("../../")
+
+# C++预处理参数
+CPPFLAGS('-DNDEBUG')
+CPPFLAGS('-D__const__=')
+
+// C++编译参数
+CXXFLAGS("-g -O0 -pipe -Wall -fPIC -fno-omit-frame-pointer -Wno-deprecated -Wno-unused-parameter -std=c++11")
+
+# gcc版本
+COMPILER('gcc482')
+
+# 指定头文件目录
+INCPATHS('./src')
+
+# 链接参数
+LDFLAGS('-lpthread -lcrypto -lrt -lz -ldl -lssl')
+
+# 依赖模块
+CONFIGS('lib2-64/ullib@ullib_3-1-139-21997_PD_BL@BCLOUD')
+
+# 可执行程序
+Application('dict_parser', Sources(GLOB('src/*.cpp')))
+
+# 发布comlog conf文件
+OUTPUT('conf', '$OUT')
+
+# 测试用词表文件
+OUTPUT("data", "$OUT")

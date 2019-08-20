@@ -17,7 +17,9 @@ struct type_parser_t {
 };
 
 int increase(int n, void *res) {
-    *(int *)res = ++n;
+    // *(int *)res = ++n;
+    string *pRes = (string *)res;
+    *pRes = "11";
     return (*(int *)res);
 }
 
@@ -78,7 +80,7 @@ int cal_line_data(vector<string> v_line, vector<string> v_format, ...) {
         func fn = type_parser_map[s_format];
         int res = (*fn)(s_line, arg_res);
         // cout << res << endl;
-        arg_res = &res;
+        // arg_res = &res;
     }
 
     return 0;
@@ -127,11 +129,19 @@ int main() {
     
     // cout << s_line1 << endl;
 
-    vector<string> v_line1;
+    vector<string> v_line1(2, "0");
     vector<string> v_format;
+    v_line1.clear();
     if (0 != split_str(s_line1, sep, v_line1)) {
         printf("ERROR: split line1 failed!");
     }
+
+    // vector<string>::iterator it = v_line1.begin();
+    // for (; it != v_line1.end(); ++it) {
+    //     cout << *it << endl;
+    // }
+    // cout << v_line1.size() << endl;
+    // return 0;
 
     if (0 != split_str(s_format, sep, v_format)) {
         printf("ERROR: split format failed!");

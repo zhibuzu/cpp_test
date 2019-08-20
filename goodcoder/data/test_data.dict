@@ -1,3 +1,2 @@
-STRING	INT32
-http://www.baidu.com	1
-http://www.google.com	2
+http://www.baidu.com	1   10.2
+http://www.google.com	2   12.33

@@ -17,87 +17,37 @@
  */
 
 #include <iostream>
-#include <fstream>
-#include <string>
-#include <vector>
-#include <cctype>
-
-using namespace std;
-
-int split_str(string str, const char* delimiters, vector<string> &p_str_arr) {
-    int split_s = 0;
-    int split_e = 0;
-    int delimiters_len = strlen(delimiters);
-
-    while (string::npos != split_e) {
-        split_e = str.find(delimiters, split_s);
-        
-        if (string::npos == split_e) {
-            (p_str_arr).push_back(str.substr(split_s));
-            break;
-        }
-        (p_str_arr).push_back(str.substr(split_s, split_e - split_s));
-        split_s = split_e + delimiters_len;
-    }
-
-    return 0;
-}
+#include "dict_parser.h"
 
 int main(int argc, char* argv[]) {
-    // string line = "hello一";
-    // cout << line.size() << endl;
-    // cout << isalnum(',') << endl;
-    // return 0;
-    // while (getline(cin, line)) {
-    //     if (line.empty()) {
-    //         continue;
-    //     }
-
-    //     cout << line << endl;
-    // }
-
-    // return 0;
-
-    string str = "STRING\tINT32\tLOAT64";
-    // cout << str << endl;
-    // cout << str.length() << endl;
-
-    // size_t pos = str.find("\t", 7);
-    // if (pos == string::npos) {
-    //     cout << "not found SRING" << endl;
-    // }
-    // cout << pos << endl;
-
-    // string substr = str.substr(7, 12 - 7);
-    // cout << substr << endl;
-
-    // const char* delimters = "\ts";
-    // int len = strlen(delimters);
-    // cout << len << endl;
-    // return 0;
-
-    
-
-    vector<string> str_arr;
-    // (str_arr).push_back(substr);
-    // cout << (str_arr)[0] << endl;
-
-    // vector<string> &ref_str_arr = str_arr;
-    // cout << (ref_str_arr)[0] << endl; 
-    int ret = split_str(str, "\t", str_arr);
-    // cout << ret << endl;
-
-    for (string ss : (str_arr)) {
-        cout << ss << endl;
+    // 开启comlog
+    if (0 != com_loadlog("../conf", "comlog.conf")) {
+        fprintf(stderr, "load comlog error\n");
+        return -1;
     }
 
+    // format: "string\tint\tfloat"
+    DictParser dict_parser("../data/test_data.dict", "string\tint\tfloat");
 
-    // while(getline(cin, str)) {
-    //     cout << str << endl;
-    // }
+    // initialization
+    int ret = dict_parser.init();
+    if (ERROR_SUCC != ret) {
+        fprintf("DictParser initialize failed\n");
+        return -1;
+    }
 
-    // 1. 已知format，每列的格式类型，能直接自动生成最终的数据结构  X
-    // 2. 已知format，每列的格式类型，接口调用者自己申明数据结构，处理句柄 V
+    int read_columns = 3;
+    char *url;
+    int display;
+    float score;
+    ret = dict_parser.parse_line_by_line(read_columns, url, &display, &score);
+    while (FILE_END != ret) {
+        if (PARSE_SUCC == ret) {
+            std::cout << url << "\t" << display << "\t" << score << std::endl;
+        }
+        ret = dict_parser.parse_line_by_line(read_columns, url, &display, &score);
+    }
+    std::cout << "=======parse end==========" << std::endl;
 
     return 0;
 }
